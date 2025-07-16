@@ -1,7 +1,7 @@
 #include "PieceLayer.hpp"
 #include "../Events/MouseButtonPressedEvent.hpp"
 
-
+//TODO Piecelayer and backgroundlayer should not get a gameState but just be updated by a gamestateevent, using the eventsystem
 
 PieceLayer::PieceLayer(const Matrix<int>& gameState, int entity_size, const char* asset_white, const char* asset_black)
     : entityMatrix(gameState.get_num_rows(), gameState.get_num_cols(), std::shared_ptr<Entity>()),

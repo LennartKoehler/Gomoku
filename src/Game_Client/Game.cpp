@@ -14,6 +14,7 @@ Game::Game(){
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
     TTF_Init();
     SDL_StartTextInput();
+    EventUtils::registerEventConstructors();
 
     int flags = 0;
     if (fullscreen){
@@ -44,52 +45,35 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 //TODO handleEvents can be adjusted to fit the event dispatcher system
 void Game::handleEvents(SDL_Event& event){
-    std::unique_ptr<Event> convertedEvent = EventConversion::convertEvent( event ); // idk why they are unique ptr
+    std::unique_ptr<Event> convertedEvent = EventUtils::convertEventFromSDL( event );
+    EventDispatcher dispatcher(*convertedEvent);
+    EventType type = convertedEvent->getEventType();
+    // if (convertedEvent->getEventType() == EventType::Code) {
+    //     update();
+    //     render();
+    // }
 
-    if (event.type == AI_MOVE_EVENT) {
-        update();
-        render();
-    }
-    if (event.type == GAMESTATE_RECIEVED_EVENT) {
-        sceneManager->getActiveScene()->handleEvent(*convertedEvent);
-    }
-    if (event.type == SEND_GAMESTATE_EVENT) {
-        GameStatePlayerEvent* gsEvent = dynamic_cast<GameStatePlayerEvent*>(convertedEvent.get());
-        sendGameStateToServer(*gsEvent);
-    }
-    if (event.type == NETWORK_CONNECTION_EVENT) {
-        NetworkConnectionEvent* netEvent = dynamic_cast<NetworkConnectionEvent*>(convertedEvent.get());
-        setClient(netEvent->IPAddress);
-    }
-    if (event.type == TEXT_RECIEVED_EVENT) {
-        TextEvent* netEvent = dynamic_cast<TextEvent*>(convertedEvent.get());
-        sceneManager->getActiveScene()->handleEvent(*convertedEvent);
-    }
-    if (event.type == SEND_TEXT_EVENT) {
-        TextEvent* textEvent = dynamic_cast<TextEvent*>(convertedEvent.get());
-        sendTextToServer(*textEvent);
-    }
+    sceneManager->getActiveScene()->handleEvent(*convertedEvent);
 
-    switch (event.type)
-    {
-    case SDL_QUIT:
+        // GameStatePlayerEvent* gsEvent = dynamic_cast<GameStatePlayerEvent*>(convertedEvent.get());
+    dispatcher.dispatch<GameStatePlayerEvent>(HZ_BIND_EVENT_FN(sendGameStateToServer)); // TODO i dont think i need the if statements when using the dispatcher?
+    
+        // NetworkConnectionEvent* netEvent = dynamic_cast<NetworkConnectionEvent*>(convertedEvent.get());
+    dispatcher.dispatch<NetworkConnectionEvent>(HZ_BIND_EVENT_FN(setClient)); // TODO i dont think i need the if statements when using the dispatcher?
+
+        // setClient(netEvent->IPAddress);
+    
+    // if (convertedEvent->getEventType() == EventType::Text) {
+    //     TextEvent* netEvent = dynamic_cast<TextEvent*>(convertedEvent.get());
+    //     sceneManager->getActiveScene()->handleEvent(*convertedEvent);
+    // }
+    dispatcher.dispatch<TextStringNetworkEvent>(HZ_BIND_EVENT_FN(sendTextToServer)); // TODO i dont think i need the if statements when using the dispatcher?
+
+        // TextEvent* textEvent = dynamic_cast<TextEvent*>(convertedEvent.get());
+        // sendTextToServer(*textEvent);
+    
+    if (convertedEvent->getEventType() == EventType::Quit) {
         isRunning = false;
-        break;
-
-    case SDL_MOUSEBUTTONDOWN:
-        sceneManager->getActiveScene()->handleEvent(*convertedEvent);
-        break;
-
-    case SDL_KEYDOWN:
-        sceneManager->getActiveScene()->handleEvent(*convertedEvent);
-        break;
-
-    case SDL_TEXTINPUT:
-        sceneManager->getActiveScene()->handleEvent(*convertedEvent);
-        break;
-
-    default:
-        break;
     }
 
 }
@@ -117,47 +101,48 @@ void Game::clean(){
 
 
 
-// void Game::setGameState(GameState* gameState){
-//     this->gameState = gameState;
-// }
-
-// GameState* Game::getGameState() { return gameState;}
-
 bool Game::isHandledEvent(SDL_Event& event){
-    bool found = (std::find(handledEvents.begin(), handledEvents.end(), event.type) != handledEvents.end());
+    bool found = (EventUtils::fromSDLType.find(event.type) != EventUtils::fromSDLType.end());
     return found;
 }
 void Game::handleNetwork(){
+    std::lock_guard<std::mutex> lock(clientMutex);
     if (client != nullptr){
         client->iteration(); // check for new data from the server
     }
 }
 
-void Game::sendGameStateToServer(GameStatePlayerEvent& event){
+bool Game::sendGameStateToServer(GameStatePlayerEvent& event){
     if (client != nullptr){
         std::vector<uint8_t> data = Serializer::serializeGameState(event.gameState, event.playerID);
         Package package{MessageType::GAME_STATE_UPDATE, data};
         sendPackageToServer(package);
+        return true;
     }
+    return false;
 }
 
-void Game::sendTextToServer(TextEvent& event){
+bool Game::sendTextToServer(TextStringNetworkEvent& event){
     if (client != nullptr){
         std::vector<uint8_t> data = Serializer::serializeText(std::string(event.text));
         Package package{MessageType::TEXT_MESSAGE, data};
         sendPackageToServer(package);
+        return true;
     }
+    return false;
+}
+
+bool Game::setClient(NetworkConnectionEvent& event){
+    const char* serverAddress = event.IPAddress;
+    SteamNetworkingIPAddr IPaddr;
+    if (!get_address(serverAddress, IPaddr) | client != nullptr){
+        std::cout << "Problemski connecting to Server IP Address: " << serverAddress << std::endl;
+    }
+    else {client = run_client(IPaddr);}
+    return true;
 }
 
 void Game::sendPackageToServer(Package package){
     client->sendToServer(package);
 }
 
-void Game::setClient(const char* serverAddress){
-    SteamNetworkingIPAddr IPaddr;
-    if (!get_address(serverAddress, IPaddr)){
-        std::cout << "Problemski connecting to Server IP Address: " << serverAddress << std::endl;
-    }
-    else {client = run_client(IPaddr);}
-
-}

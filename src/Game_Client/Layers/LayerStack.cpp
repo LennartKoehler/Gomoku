@@ -2,14 +2,12 @@
 #include <iostream>
 
 LayerStack::~LayerStack(){
-    for (Layer* layer : layers){
-        delete layer;
-    }
+    layers.clear();
 }
 
 void LayerStack::handleEvent(Event& event){
     EventDispatcher dispatcher(event);
-    for (Layer* layer : layers){
+    for (std::shared_ptr<Layer> layer : layers){
         if(event.handled){
             break;
         }
@@ -17,24 +15,28 @@ void LayerStack::handleEvent(Event& event){
     }
 }
 
-void LayerStack::addLayer(Layer* layer){
+void LayerStack::addLayer(std::shared_ptr<Layer> layer){
     layers.push_back(layer);
 }
 
+void LayerStack::addLayerTop(std::shared_ptr<Layer> layer){
+    layers.insert(layers.begin(), layer);
+}
+
 void LayerStack::updateLayers(){
-    for (Layer* layer : layers){
+    for (std::shared_ptr<Layer> layer : layers){
         layer->update();
     }
 }
 
 void LayerStack::refreshLayers(){
-    for (Layer* layer : layers){
+    for (std::shared_ptr<Layer> layer : layers){
         layer->refresh();
     }
 }
 
 void LayerStack::drawLayers(){
-    for (Layer* layer : layers){
+    for (std::shared_ptr<Layer> layer : layers){
         layer->draw();
     }
 }

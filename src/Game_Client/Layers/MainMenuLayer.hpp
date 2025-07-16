@@ -1,7 +1,7 @@
 #pragma once
 #include "PieceLayer.hpp"
 #include "../Events/MouseButtonPressedEvent.hpp"
-#include "../Events/TextInputEvent.hpp"
+#include "../Events/TextStringEvent.hpp"
 #include "../Events/KeyDownEvent.hpp"
 
 
@@ -13,7 +13,7 @@ public:
     MainMenuLayer();
     void onEvent(Event& event);
     bool onMouseButtonPressed(MouseButtonPressedEvent& event);
-    bool onTextInput(TextInputEvent& event);
+    bool onTextInput(TextStringEvent& event);
     bool onKeyDown(KeyDownEvent& event);
     void setGomokuButtonCallback(ButtonCallback cb);
     void setConnectServerButtonCallback(ButtonCallbackString cb);

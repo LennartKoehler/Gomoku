@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 
 #include "Package.h"
+#include "Events/EventUtils.hpp"
 
 extern const Uint32 GAMESTATE_RECIEVED_EVENT;
 extern const Uint32 TEXT_RECIEVED_EVENT;
@@ -10,26 +11,37 @@ extern const Uint32 TEXT_RECIEVED_EVENT;
 
 
 inline void packageToSDLEvent(Package* package){
-    SDL_Event event;
-    SDL_zero(event);
     if (package->type == MessageType::TEXT_MESSAGE){
-        event.type = TEXT_RECIEVED_EVENT;
-        // Allocate on heap so the pointer remains valid after this scope
-        auto textData = Serializer::deserializeText(package->payload);
-        event.user.data1 = strdup(textData.c_str()); // TODO delete the data later
-        SDL_PushEvent(&event);
-
+        std::string textData = Serializer::deserializeText(package->payload);
+        TextStringNetworkEvent event{textData};
+        SDL_Event sdlevent = event.toSDLEvent();
+        SDL_PushEvent(&sdlevent);
     }
     if (package->type == MessageType::GAME_STATE_UPDATE){
-        event.type = GAMESTATE_RECIEVED_EVENT;
-        // Allocate on heap so the pointer remains valid after this scope
         auto tuple = Serializer::deserializeGameState(package->payload);
-        auto* gameState = new Matrix<int>(std::get<0>(tuple));
-        auto* playerID = new int(std::get<1>(tuple));
-        event.user.data1 = gameState;
-        event.user.data2 = playerID;
-        SDL_PushEvent(&event);
+        GameStatePlayerEvent event(std::get<0>(tuple), std::get<1>(tuple));
+        SDL_Event sdlevent = event.toSDLEvent();
+        SDL_PushEvent(&sdlevent);
     }
+
+    // }
+    // if (package->type == MessageType::TEXT_MESSAGE){
+    //     event.type = TEXT_RECIEVED_EVENT;
+    //     // Allocate on heap so the pointer remains valid after this scope
+    //     auto textData = Serializer::deserializeText(package->payload);
+    //     event.user.data1 = strdup(textData.c_str()); // TODO delete the data later
+    //     SDL_PushEvent(&event);
+    // }
+    // if (package->type == MessageType::GAME_STATE_UPDATE){
+    //     event.type = GAMESTATE_RECIEVED_EVENT;
+    //     // Allocate on heap so the pointer remains valid after this scope
+    //     auto tuple = Serializer::deserializeGameState(package->payload);
+    //     auto* gameState = new Matrix<int>(std::get<0>(tuple));
+    //     auto* playerID = new int(std::get<1>(tuple));
+    //     event.user.data1 = gameState;
+    //     event.user.data2 = playerID;
+    //     SDL_PushEvent(&event);
+    // }
     delete package;
 }
 

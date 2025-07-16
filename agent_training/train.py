@@ -1,3 +1,5 @@
+# inspired by https://medium.com/@hkabhi916/mastering-deep-q-learning-with-pytorch-a-comprehensive-guide-a7e690d644fc
+
 from DQN_Agent import DQNAgent
 from DQN import DQN
 from game import Game_training_wrapper

@@ -3,8 +3,8 @@
 
 GomokuScene::GomokuScene(SceneManager* sceneManager) : Scene(sceneManager){
         gameController = new GameController();
-        backgroundLayer = new BackgroundLayer(gameController->getState(), 64, textures::tile);
-        pieceLayer = new PieceLayer(gameController->getState(), 64, textures::white_piece, textures::black_piece);
+        backgroundLayer = std::make_shared<BackgroundLayer>(gameController->getState(), 64, textures::tile);
+        pieceLayer = std::make_shared<PieceLayer>(gameController->getState(), 64, textures::white_piece, textures::black_piece);
         layerStack.addLayer(backgroundLayer);
         layerStack.addLayer(pieceLayer);
 
@@ -34,6 +34,4 @@ void GomokuScene::handleEvent(Event& event){
 
 GomokuScene::~GomokuScene(){
     delete gameController;
-    delete backgroundLayer;
-    delete pieceLayer;
 }

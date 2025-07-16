@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "Scene.hpp"
 
 class SceneManager;
@@ -11,7 +13,7 @@ public:
     void sendIPAddressEvent(const char* ipaddress);
 
 private:
-    MainMenuLayer* mainMenuLayer;
-    ChatLayer* chatLayer;
+    std::shared_ptr<MainMenuLayer> mainMenuLayer;
+    std::shared_ptr<ChatLayer> chatLayer;
 
 };

@@ -7,6 +7,7 @@
 #include <mutex>
 #include <condition_variable>
 #include "../Events/GameStateEvent.hpp"
+#include "Events/EventUtils.hpp"
 
 
 extern const Uint32 AI_MOVE_EVENT;
@@ -58,25 +59,38 @@ public:
 
 
     void pushGameStateEvent(Matrix<int>* stateMatrix, int playerID){
-        SDL_Event event; // TODO delete matrix and playerid later
-        SDL_zero(event);
-        event.user.data1 = stateMatrix;
-        int* playerID_Heap = new int(playerID);
-        event.user.data2 = playerID_Heap;
-        event.type = GAMESTATE_RECIEVED_EVENT;
-        SDL_PushEvent(&event);
+        GameStatePlayerEvent event{*stateMatrix, playerID};
+        SDL_Event sdlevent = event.toSDLEvent();
+        SDL_PushEvent(&sdlevent);
     }
 
-    void sendGameStateEventToServer(Matrix<int> stateMatrix, int playerID){
-        Matrix<int>* stateMatrix_Heap = new Matrix<int>(stateMatrix); // TODO delete later
-        SDL_Event event;
-        SDL_zero(event);
-        event.user.data1 = stateMatrix_Heap;
-        int* playerID_Heap = new int(playerID);
-        event.user.data2 = playerID_Heap;
-        event.type = SEND_GAMESTATE_EVENT;
-        SDL_PushEvent(&event);
+    void pushSendGameStateEvent(Matrix<int> stateMatrix, int playerID){
+        SendGameStateToServerEvent event{stateMatrix, playerID};
+        SDL_Event sdlevent= event.toSDLEvent();
+        SDL_PushEvent(&sdlevent);
     }
+    
+    // void pushGameStateEvent(Matrix<int>* stateMatrix, int playerID){
+
+    //     SDL_Event event; // TODO delete matrix and playerid later
+    //     SDL_zero(event);
+    //     event.user.data1 = stateMatrix;
+    //     int* playerID_Heap = new int(playerID);
+    //     event.user.data2 = playerID_Heap;
+    //     event.type = GAMESTATE_RECIEVED_EVENT;
+    //     SDL_PushEvent(&event);
+    // }
+
+    // void sendGameStateEventToServer(Matrix<int> stateMatrix, int playerID){
+    //     Matrix<int>* stateMatrix_Heap = new Matrix<int>(stateMatrix); // TODO delete later
+    //     SDL_Event event;
+    //     SDL_zero(event);
+    //     event.user.data1 = stateMatrix_Heap;
+    //     int* playerID_Heap = new int(playerID);
+    //     event.user.data2 = playerID_Heap;
+    //     event.type = SEND_GAMESTATE_EVENT;
+    //     SDL_PushEvent(&event);
+    // }
 
     void turnTaken(){
         currentPlayerIndex = (currentPlayerIndex % 2) +1;
@@ -84,7 +98,7 @@ public:
         winner = currentPlayerIndex * gameState->checkIfWon(currentPlayerIndex);
         
         if (dynamic_cast<RemotePlayer*>(currentPlayer)){
-            sendGameStateEventToServer(gameState->getState(), currentPlayerIndex);
+            pushSendGameStateEvent(gameState->getState(), currentPlayerIndex);
         }
     }
 

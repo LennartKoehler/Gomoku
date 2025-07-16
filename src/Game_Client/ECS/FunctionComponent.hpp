@@ -12,7 +12,9 @@ public:
         this->func = func;
     }
     void executeFunction(){
-        func();
+        if (func){
+            func();
+        }
     }
 
 protected:

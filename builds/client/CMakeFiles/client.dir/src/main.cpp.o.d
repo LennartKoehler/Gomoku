@@ -301,21 +301,16 @@ CMakeFiles/client.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/node_handle.h \
  /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
- /usr/include/c++/11/bits/erase_if.h \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Textures.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/EventConversion.hpp \
- /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_uninitialized.h \
- /usr/include/c++/11/bits/stl_raw_storage_iter.h \
- /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
+ /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/mutex \
+ /usr/include/c++/11/tuple /usr/include/c++/11/utility \
+ /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/array \
  /usr/include/c++/11/bits/uses_allocator.h \
- /usr/include/c++/11/bits/unique_ptr.h /usr/include/c++/11/utility \
- /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/tuple \
- /usr/include/c++/11/array /usr/include/c++/11/bits/invoke.h \
- /usr/include/c++/11/bits/shared_ptr.h \
- /usr/include/c++/11/bits/shared_ptr_base.h \
- /usr/include/c++/11/bits/allocated_ptr.h \
- /usr/include/c++/11/bits/refwrap.h /usr/include/c++/11/ext/concurrence.h \
- /usr/include/c++/11/bits/shared_ptr_atomic.h \
+ /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/chrono \
+ /usr/include/c++/11/ratio /usr/include/c++/11/ctime \
+ /usr/include/c++/11/bits/parse_numbers.h \
+ /usr/include/c++/11/bits/std_mutex.h \
+ /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/thread \
+ /usr/include/c++/11/stop_token /usr/include/c++/11/atomic \
  /usr/include/c++/11/bits/atomic_base.h \
  /usr/include/c++/11/bits/atomic_lockfree_defines.h \
  /usr/include/c++/11/bits/atomic_wait.h /usr/include/c++/11/climits \
@@ -338,27 +333,51 @@ CMakeFiles/client.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/asm/unistd.h \
  /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
  /usr/include/x86_64-linux-gnu/bits/syscall.h \
- /usr/include/c++/11/bits/std_mutex.h \
+ /usr/include/c++/11/bits/std_thread.h /usr/include/c++/11/bits/refwrap.h \
+ /usr/include/c++/11/bits/unique_ptr.h /usr/include/c++/11/semaphore \
+ /usr/include/c++/11/bits/semaphore_base.h \
+ /usr/include/c++/11/bits/atomic_timed_wait.h \
+ /usr/include/c++/11/bits/this_thread_sleep.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \
+ /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Textures.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/EventUtils.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/MouseButtonPressedEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/Event.hpp \
+ /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
+ /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
+ /usr/include/c++/11/bits/hashtable_policy.h \
+ /usr/include/c++/11/bits/enable_special_members.h \
+ /usr/include/c++/11/bits/unordered_map.h /usr/include/c++/11/vector \
+ /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/typeindex \
+ /usr/include/c++/11/cassert /usr/include/assert.h \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/GameStateEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/../VectorMatrix.hpp \
+ /usr/include/c++/11/memory \
+ /usr/include/c++/11/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
+ /usr/include/c++/11/bits/shared_ptr.h \
+ /usr/include/c++/11/bits/shared_ptr_base.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/ext/concurrence.h \
+ /usr/include/c++/11/bits/shared_ptr_atomic.h \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/bits/ranges_uninitialized.h \
  /usr/include/c++/11/bits/ranges_algobase.h /usr/include/c++/11/iterator \
  /usr/include/c++/11/bits/stream_iterator.h \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
- /usr/include/c++/11/pstl/execution_defs.h \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/Event.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/MouseButtonPressedEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/GameStateEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/../VectorMatrix.hpp \
- /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
- /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/cassert \
- /usr/include/assert.h /usr/include/c++/11/sstream \
+ /usr/include/c++/11/pstl/execution_defs.h /usr/include/c++/11/sstream \
  /usr/include/c++/11/bits/sstream.tcc \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/NetworkConnectionEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/TextInputEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/TextStringEvent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/KeyDownEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/TextEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/TextCharEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/CodeEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Events/QuitEvent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/SceneManager.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/MainMenu.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/Scene.hpp \
@@ -371,11 +390,6 @@ CMakeFiles/client.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/ranges_algo.h \
  /usr/include/c++/11/bits/ranges_util.h \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
- /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
- /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
- /usr/include/c++/11/bits/hashtable_policy.h \
- /usr/include/c++/11/bits/enable_special_members.h \
- /usr/include/c++/11/bits/unordered_map.h \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/RectComponent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/SpriteComponent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../TextureManager.hpp \
@@ -391,7 +405,6 @@ CMakeFiles/client.dir/src/main.cpp.o: \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/BackgroundLayer.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/MainMenuLayer.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/ChatLayer.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ChatUtils.h \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/GomokuScene.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/Player.h \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/../GameState.hpp \
@@ -404,8 +417,6 @@ CMakeFiles/client.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/stl_numeric.h \
  /usr/include/c++/11/pstl/glue_numeric_defs.h \
  /usr/include/c++/11/filesystem /usr/include/c++/11/bits/fs_fwd.h \
- /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
- /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
  /usr/include/c++/11/bits/fs_path.h /usr/include/c++/11/locale \
  /usr/include/c++/11/bits/locale_facets_nonio.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
@@ -440,7 +451,6 @@ CMakeFiles/client.dir/src/main.cpp.o: \
  /usr/local/lib/libtorch/include/c10/macros/Macros.h \
  /usr/local/lib/libtorch/include/c10/util/Backtrace.h \
  /usr/local/lib/libtorch/include/c10/util/Lazy.h \
- /usr/include/c++/11/atomic \
  /usr/local/lib/libtorch/include/c10/util/StringUtil.h \
  /usr/local/lib/libtorch/include/c10/util/string_utils.h \
  /usr/include/c++/11/optional /usr/include/c++/11/variant \
@@ -503,7 +513,6 @@ CMakeFiles/client.dir/src/main.cpp.o: \
  /usr/local/lib/libtorch/include/c10/util/overflows.h \
  /usr/local/lib/libtorch/include/c10/core/ScalarTypeToTypeMeta.h \
  /usr/local/lib/libtorch/include/c10/util/typeid.h \
- /usr/include/c++/11/mutex /usr/include/c++/11/bits/unique_lock.h \
  /usr/local/lib/libtorch/include/c10/util/IdWrapper.h \
  /usr/local/lib/libtorch/include/c10/util/TypeIndex.h \
  /usr/local/lib/libtorch/include/c10/util/ConstexprCrc.h \
@@ -998,17 +1007,10 @@ CMakeFiles/client.dir/src/main.cpp.o: \
  /usr/local/lib/libtorch/include/ATen/core/DimVector.h \
  /usr/local/lib/libtorch/include/ATen/core/blob.h \
  /usr/local/lib/libtorch/include/ATen/core/custom_class.h \
- /usr/include/c++/11/typeindex \
  /usr/local/lib/libtorch/include/ATen/core/type_factory.h \
  /usr/local/lib/libtorch/include/ATen/core/dynamic_type.h \
  /usr/local/lib/libtorch/include/ATen/core/ivalue_inl.h \
- /usr/include/c++/11/condition_variable /usr/include/c++/11/stop_token \
- /usr/include/c++/11/bits/std_thread.h /usr/include/c++/11/semaphore \
- /usr/include/c++/11/bits/semaphore_base.h \
- /usr/include/c++/11/bits/atomic_timed_wait.h \
- /usr/include/c++/11/bits/this_thread_sleep.h \
- /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \
- /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+ /usr/include/c++/11/condition_variable \
  /usr/local/lib/libtorch/include/ATen/core/Dict.h \
  /usr/local/lib/libtorch/include/c10/util/order_preserving_flat_hash_map.h \
  /usr/local/lib/libtorch/include/ATen/core/Dict_inl.h \
@@ -1065,7 +1067,6 @@ CMakeFiles/client.dir/src/main.cpp.o: \
  /usr/local/lib/libtorch/include/ATen/record_function.h \
  /usr/local/lib/libtorch/include/c10/util/LeftRight.h \
  /usr/local/lib/libtorch/include/c10/util/Synchronized.h \
- /usr/include/c++/11/thread \
  /usr/local/lib/libtorch/include/ATen/core/grad_mode.h \
  /usr/local/lib/libtorch/include/c10/core/GradMode.h \
  /usr/local/lib/libtorch/include/torch/csrc/jit/frontend/function_schema_parser.h \

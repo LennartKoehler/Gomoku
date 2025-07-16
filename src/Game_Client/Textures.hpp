@@ -8,5 +8,7 @@ namespace textures{
     static const char* won = "assets/won.png";
     static const char* background = "assets/background.png";
     static const char* start_game = "assets/start_game.png";
+    static const char* grey = "assets/grey.png";
+    static const char* white_background = "assets/white_background.png";
 
 } //IMPORTANT this needs to be change for the builds...

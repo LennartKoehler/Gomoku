@@ -8,17 +8,14 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <set>
+#include <mutex>
+#include <thread>
+
 #include "Textures.hpp"
-#include "Events/EventConversion.hpp"
+#include "Events/EventUtils.hpp"
 #include "Scenes/SceneManager.hpp"
 
-//#include "Layers/LayerStack.hpp"
 
-extern const Uint32 GAMESTATE_RECIEVED_EVENT;
-extern const Uint32 TEXT_RECIEVED_EVENT;
-extern const Uint32 NETWORK_CONNECTION_EVENT;
-extern const Uint32 SEND_GAMESTATE_EVENT;
-extern const Uint32 SEND_TEXT_EVENT;
 
 class ChatClient;
 class Package;
@@ -35,26 +32,26 @@ public:
     void clean();
     void handleNetwork();
     void sendPackageToServer(Package package);
-    void sendGameStateToServer(GameStatePlayerEvent& event);
-    void sendTextToServer(TextEvent& event);
-    void setClient(const char* address);
+    bool sendGameStateToServer(GameStatePlayerEvent& event);
+    bool sendTextToServer(TextStringNetworkEvent& event);
+    bool setClient(NetworkConnectionEvent& event);
     static SDL_Renderer* renderer;
     static SDL_Event event;
-    // void setGameState(GameState* gameState);
-    // GameState* getGameState();
+    std::mutex clientMutex;
+
     bool isHandledEvent(SDL_Event& event);
 
     private:
-    std::set<Uint32> handledEvents{SDL_QUIT,
-         SDL_MOUSEBUTTONDOWN,
-         SDL_KEYDOWN,
-         SDL_TEXTINPUT,
-         AI_MOVE_EVENT,
-         GAMESTATE_RECIEVED_EVENT,
-         TEXT_RECIEVED_EVENT,
-         NETWORK_CONNECTION_EVENT,
-         SEND_GAMESTATE_EVENT,
-         SEND_TEXT_EVENT};
+    // std::set<Uint32> handledEvents{SDL_QUIT,
+    //      SDL_MOUSEBUTTONDOWN,
+    //      SDL_KEYDOWN,
+    //      SDL_TEXTINPUT,
+    //      AI_MOVE_EVENT,
+    //      GAMESTATE_RECIEVED_EVENT,
+    //      TEXT_RECIEVED_EVENT,
+    //      NETWORK_CONNECTION_EVENT,
+    //      SEND_GAMESTATE_EVENT,
+    //      SEND_TEXT_EVENT};
     // GameState* gameState;
     bool isRunning = false;
     SDL_Window* window;

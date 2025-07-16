@@ -9,9 +9,35 @@ SDL_Texture* TextureManager::LoadTexture(const char* texture){
     return tex;
 }
 
+SDL_Texture* TextureManager::plainTexture(int r, int g, int b, int w, int h) {
+    // Create a texture that can be rendered into
+    SDL_Texture* tex = SDL_CreateTexture(Game::renderer,
+                                         SDL_PIXELFORMAT_RGBA8888,
+                                         SDL_TEXTUREACCESS_TARGET,
+                                         w, h);
+    if (!tex) {
+        SDL_Log("Failed to create texture: %s", SDL_GetError());
+        return nullptr;
+    }
+    // Save current render target
+    SDL_Texture* oldTarget = SDL_GetRenderTarget(Game::renderer);
+
+    // Set our texture as the render target
+    SDL_SetRenderTarget(Game::renderer, tex);
+
+    // Fill it with the color
+    SDL_SetRenderDrawColor(Game::renderer, r, g, b, 255);
+    SDL_RenderClear(Game::renderer);
+
+    // Reset render target back to previous
+    SDL_SetRenderTarget(Game::renderer, oldTarget);
+
+    return tex;
+}
+
 SDL_Texture* TextureManager::WriteText(const char* text, int fontsize){
     TTF_Font* Sans = TTF_OpenFont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", fontsize);
-    SDL_Color black = {0, 0, 0};
+    SDL_Color black = {0,0,0};
     SDL_Surface* surfaceMessage = TTF_RenderText_Blended(Sans, text, black);
     SDL_Texture* Message = SDL_CreateTextureFromSurface(Game::renderer, surfaceMessage);
     SDL_FreeSurface(surfaceMessage);
@@ -21,7 +47,7 @@ SDL_Texture* TextureManager::WriteText(const char* text, int fontsize){
 
 SDL_Texture* TextureManager::WriteTextWrapped(const char* text, int fontsize, int wrapLength){
     TTF_Font* Sans = TTF_OpenFont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", fontsize);
-    SDL_Color black = {0, 0, 0};
+    SDL_Color black = {0,0,0};
     SDL_Surface* surfaceMessage = TTF_RenderText_Blended_Wrapped(Sans, text, black, wrapLength);
     SDL_Texture* Message = SDL_CreateTextureFromSurface(Game::renderer, surfaceMessage);
     SDL_FreeSurface(surfaceMessage);
@@ -36,7 +62,7 @@ SDL_Texture* TextureManager::WriteTextWrapped(const char* text, int fontsize, in
 //     SDL_Surface* tempSurface = IMG_Load(textures::background);
 
 //     TTF_Font* Sans = TTF_OpenFont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 24);
-//     SDL_Color black = {0, 0, 0};
+//     SDL_Color black = {0,0,0};
 //     SDL_Surface* surfaceMessage = TTF_RenderText_Blended(Sans, text, black);
 //     SDL_BlitSurface( surfaceMessage, NULL, tempSurface, &dest );
 
@@ -45,12 +71,12 @@ SDL_Texture* TextureManager::WriteTextWrapped(const char* text, int fontsize, in
 //     return Message;
 // }
 
-SDL_Texture* TextureManager::WriteTextOnBackground(const char* text, SDL_Surface* background){
+SDL_Texture* TextureManager::WriteTextOnBackground(const char* text, int fontsize, SDL_Surface* background){
     SDL_Rect dest = {10,20,0,0};
     SDL_Surface* tempSurface = IMG_Load(textures::background);
 
     TTF_Font* Sans = TTF_OpenFont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 24);
-    SDL_Color black = {0, 0, 0};
+    SDL_Color black = {0,0,0};
     SDL_Surface* surfaceMessage = TTF_RenderText_Blended(Sans, text, black);
     SDL_BlitSurface( surfaceMessage, NULL, background, &dest );
 

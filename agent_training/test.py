@@ -35,7 +35,8 @@ import torch.nn as nn
 # print(x_res)
 # import os
 # print(os.getcwd())
-import torch
+
+
 def get_2d(x, input_dim):
     c = torch.nn.Conv2d(1,16, (3, 1))
     return c(x)

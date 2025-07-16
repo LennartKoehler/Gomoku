@@ -1,3 +1,5 @@
+# inspired by https://medium.com/@hkabhi916/mastering-deep-q-learning-with-pytorch-a-comprehensive-guide-a7e690d644fc
+
 import torch
 import torch.nn as nn
 import torch.optim as optim

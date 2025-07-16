@@ -15,8 +15,8 @@ public:
     void update() override;
     void handleEvent(Event& event) override;
 
-    PieceLayer* pieceLayer;
-    BackgroundLayer* backgroundLayer;
+    std::shared_ptr<PieceLayer> pieceLayer;
+    std::shared_ptr<BackgroundLayer> backgroundLayer;
 private:
     std::vector<Player> players;
     GameController* gameController;

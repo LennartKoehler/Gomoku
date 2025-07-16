@@ -20,8 +20,10 @@ MainMenuLayer::MainMenuLayer(){
 
     Entity& serverAddressTextFieldEntity = manager.addEntity(); // TODO well this is just unnecessary
     serverAddressTextFieldEntity.addComponent<RectComponent>(200,600,50,100);
-    serverAddressTextFieldEntity.addComponent<FunctionComponent>();
-    serverAddressTextFieldEntity.addComponent<TextFieldComponent>("ServerAddress", textures::tile, 28);
+    serverAddressTextFieldEntity.addComponent<FunctionComponent>([&serverAddressTextFieldEntity](){
+        serverAddressTextFieldEntity.getComponent<TextFieldComponent>().onClick();
+    });
+    serverAddressTextFieldEntity.addComponent<TextFieldComponent>("ServerAddress", textures::white_background, 28);
     serverAddressTextFieldEntity.addGroup(groupButtons);
     serverAddressTextField = &serverAddressTextFieldEntity;
 
@@ -30,31 +32,16 @@ MainMenuLayer::MainMenuLayer(){
 void MainMenuLayer::onEvent(Event& event){
     EventDispatcher dispatcher(event);
     dispatcher.dispatch<MouseButtonPressedEvent>(HZ_BIND_EVENT_FN(MainMenuLayer::onMouseButtonPressed));
-    dispatcher.dispatch<KeyDownEvent>(HZ_BIND_EVENT_FN(MainMenuLayer::onKeyDown)); // currently only for backspace
-    dispatcher.dispatch<TextInputEvent>(HZ_BIND_EVENT_FN(MainMenuLayer::onTextInput));
-}
-
-
-bool MainMenuLayer::onTextInput(TextInputEvent& event){ // TODO i should make a textfield entity that takes all kinds of events, so this isnt on the layer 
-    auto& tf = serverAddressTextField->getComponent<TextFieldComponent>();
-    if (tf.isFocused()) {
-        tf.addLetter(event.text);
-        return true;
+    if (!event.handled){
+        serverAddressTextField->getComponent<TextFieldComponent>().onEvent(event);
     }
-    return false;
 }
 
-bool MainMenuLayer::onKeyDown(KeyDownEvent& event){
-    auto& tf = serverAddressTextField->getComponent<TextFieldComponent>();
-    if (tf.isFocused()) {
-        tf.keyInput(event.key);
-        return true;
-    }
-    return false;
-}
+
+
 bool MainMenuLayer::onMouseButtonPressed(MouseButtonPressedEvent& event){
     Entity* entity = getEntityAtPosition(event.x, event.y, groupButtons);
-    if (entity != nullptr){
+    if (entity != nullptr && entity->hasComponent<FunctionComponent>()){
         entity->getComponent<FunctionComponent>().executeFunction();
         return true;
     }

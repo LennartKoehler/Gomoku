@@ -366,25 +366,30 @@ src/Game_Client/CMakeFiles/game_client_lib.dir/Scenes/GomokuScene.cpp.o: \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/FunctionComponent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/TextComponent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/TextFieldComponent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/MultilineTextComponent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../VectorMatrix.hpp \
- /usr/include/c++/11/cassert /usr/include/assert.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/sstream \
- /usr/include/c++/11/bits/sstream.tcc \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../Events/MouseButtonPressedEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../Events/Event.hpp \
+ /usr/include/c++/11/bits/istream.tcc \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/EventUtils.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/MouseButtonPressedEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/Event.hpp \
+ /usr/include/c++/11/typeindex /usr/include/c++/11/cassert \
+ /usr/include/assert.h \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/GameStateEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/../VectorMatrix.hpp \
+ /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/NetworkConnectionEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/TextStringEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/KeyDownEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/TextCharEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/CodeEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/../Events/QuitEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ECS/MultilineTextComponent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../Textures.hpp \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/BackgroundLayer.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/MainMenuLayer.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../Events/TextInputEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../Events/KeyDownEvent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/ChatLayer.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../Events/TextEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Layers/../ChatUtils.h \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/Player.h \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/../GameState.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/GameController.h \
@@ -990,7 +995,6 @@ src/Game_Client/CMakeFiles/game_client_lib.dir/Scenes/GomokuScene.cpp.o: \
  /usr/local/lib/libtorch/include/ATen/core/DimVector.h \
  /usr/local/lib/libtorch/include/ATen/core/blob.h \
  /usr/local/lib/libtorch/include/ATen/core/custom_class.h \
- /usr/include/c++/11/typeindex \
  /usr/local/lib/libtorch/include/ATen/core/type_factory.h \
  /usr/local/lib/libtorch/include/ATen/core/dynamic_type.h \
  /usr/local/lib/libtorch/include/ATen/core/ivalue_inl.h \
@@ -5131,5 +5135,4 @@ src/Game_Client/CMakeFiles/game_client_lib.dir/Scenes/GomokuScene.cpp.o: \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/../../../alpha_zero/PlayOut.h \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/../../../alpha_zero/DataAugmentation.h \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/LocalPlayer.h \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/RemotePlayer.h \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/../Events/GameStateEvent.hpp
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Scenes/../Players/RemotePlayer.h

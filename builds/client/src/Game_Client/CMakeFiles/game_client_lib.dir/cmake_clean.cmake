@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/game_client_lib.dir/ECS/ECS.cpp.o.d"
   "CMakeFiles/game_client_lib.dir/ECS/TextFieldComponent.cpp.o"
   "CMakeFiles/game_client_lib.dir/ECS/TextFieldComponent.cpp.o.d"
+  "CMakeFiles/game_client_lib.dir/Events/EventUtils.cpp.o"
+  "CMakeFiles/game_client_lib.dir/Events/EventUtils.cpp.o.d"
   "CMakeFiles/game_client_lib.dir/Game.cpp.o"
   "CMakeFiles/game_client_lib.dir/Game.cpp.o.d"
   "CMakeFiles/game_client_lib.dir/GameState.cpp.o"

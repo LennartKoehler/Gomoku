@@ -223,6 +223,30 @@ ECS/TextFieldComponent.cpp.s:
 	cd /home/lennart/cpp_projects/game_engine/builds/client && $(MAKE) $(MAKESILENT) -f src/Game_Client/CMakeFiles/game_client_lib.dir/build.make src/Game_Client/CMakeFiles/game_client_lib.dir/ECS/TextFieldComponent.cpp.s
 .PHONY : ECS/TextFieldComponent.cpp.s
 
+Events/EventUtils.o: Events/EventUtils.cpp.o
+.PHONY : Events/EventUtils.o
+
+# target to build an object file
+Events/EventUtils.cpp.o:
+	cd /home/lennart/cpp_projects/game_engine/builds/client && $(MAKE) $(MAKESILENT) -f src/Game_Client/CMakeFiles/game_client_lib.dir/build.make src/Game_Client/CMakeFiles/game_client_lib.dir/Events/EventUtils.cpp.o
+.PHONY : Events/EventUtils.cpp.o
+
+Events/EventUtils.i: Events/EventUtils.cpp.i
+.PHONY : Events/EventUtils.i
+
+# target to preprocess a source file
+Events/EventUtils.cpp.i:
+	cd /home/lennart/cpp_projects/game_engine/builds/client && $(MAKE) $(MAKESILENT) -f src/Game_Client/CMakeFiles/game_client_lib.dir/build.make src/Game_Client/CMakeFiles/game_client_lib.dir/Events/EventUtils.cpp.i
+.PHONY : Events/EventUtils.cpp.i
+
+Events/EventUtils.s: Events/EventUtils.cpp.s
+.PHONY : Events/EventUtils.s
+
+# target to generate assembly for a file
+Events/EventUtils.cpp.s:
+	cd /home/lennart/cpp_projects/game_engine/builds/client && $(MAKE) $(MAKESILENT) -f src/Game_Client/CMakeFiles/game_client_lib.dir/build.make src/Game_Client/CMakeFiles/game_client_lib.dir/Events/EventUtils.cpp.s
+.PHONY : Events/EventUtils.cpp.s
+
 Game.o: Game.cpp.o
 .PHONY : Game.o
 
@@ -506,6 +530,9 @@ help:
 	@echo "... ECS/TextFieldComponent.o"
 	@echo "... ECS/TextFieldComponent.i"
 	@echo "... ECS/TextFieldComponent.s"
+	@echo "... Events/EventUtils.o"
+	@echo "... Events/EventUtils.i"
+	@echo "... Events/EventUtils.s"
 	@echo "... Game.o"
 	@echo "... Game.i"
 	@echo "... Game.s"

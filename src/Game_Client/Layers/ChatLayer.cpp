@@ -5,53 +5,43 @@ extern const Uint32 TEXT_RECIEVED_EVENT;
 
 // make buttoncomponent, that when pressed executes the given function? -> e.g. set a value
 ChatLayer::ChatLayer(){
+    Entity& backgroundImage(manager.addEntity());
+    backgroundImage.addComponent<RectComponent>(1000,0,1000,1000);
+    backgroundImage.addComponent<SpriteComponent>(textures::grey);
+
     Entity& chatTextFieldEntity = manager.addEntity(); // TODO well this is just unnecessary
-    chatTextFieldEntity.addComponent<RectComponent>(600,800,100,500);
-    chatTextFieldEntity.addComponent<FunctionComponent>();
+    chatTextFieldEntity.addComponent<RectComponent>(1000,900,100,500);
+    chatTextFieldEntity.addComponent<FunctionComponent>([&chatTextFieldEntity](){
+        chatTextFieldEntity.getComponent<TextFieldComponent>().onClick();
+    });
     chatTextFieldEntity.addComponent<TextFieldComponent>("chat", textures::tile, 28);
-    chatTextFieldEntity.getComponent<TextFieldComponent>().addAction(SDLK_RETURN, std::bind(&ChatLayer::setReturn, this));
+    chatTextFieldEntity.getComponent<TextFieldComponent>().addKeyFunction(SDLK_RETURN, std::bind(&ChatLayer::setReturn, this)); // overwrite the default return to additionally send the event
+    chatTextFieldEntity.getComponent<TextFieldComponent>().setBackgroundTexture(textures::white_background);
+
     chatTextFieldEntity.addGroup(groupButtons);
     chatTextField = &chatTextFieldEntity;
 
     Entity& chatHistoryEntity = manager.addEntity(); // TODO well this is just unnecessary
-    chatHistoryEntity.addComponent<RectComponent>(600,700,100,500);
-    chatHistoryEntity.addComponent<FunctionComponent>();
+    chatHistoryEntity.addComponent<RectComponent>(1000,800,100,200);
     chatHistoryEntity.addComponent<MultilineTextComponent>(28);
-    chatHistoryEntity.addGroup(groupButtons);
     chatHistory = &chatHistoryEntity;
 }
 
 void ChatLayer::onEvent(Event& event){
     EventDispatcher dispatcher(event);
     dispatcher.dispatch<MouseButtonPressedEvent>(HZ_BIND_EVENT_FN(ChatLayer::onMouseButtonPressed));
-    dispatcher.dispatch<KeyDownEvent>(HZ_BIND_EVENT_FN(ChatLayer::onKeyDown)); // currently only for backspace
-    dispatcher.dispatch<TextInputEvent>(HZ_BIND_EVENT_FN(ChatLayer::onTextInput));
-    dispatcher.dispatch<TextEvent>(HZ_BIND_EVENT_FN(ChatLayer::onTextRecieved));
+    dispatcher.dispatch<TextStringNetworkEvent>(HZ_BIND_EVENT_FN(ChatLayer::onTextRecieved));
+    chatTextField->getComponent<TextFieldComponent>().onEvent(event);
 
 }
 
-bool ChatLayer::onTextInput(TextInputEvent& event){ // TODO i should make a textfield entity that takes all kinds of events, so this isnt on the layer 
-    auto& tf = chatTextField->getComponent<TextFieldComponent>();
-    if (tf.isFocused()) {
-        tf.addLetter(event.text);
-        return true;
-    }
-    return false;
-}
 
-bool ChatLayer::onTextRecieved(TextEvent& event){
-    chatHistory->getComponent<MultilineTextComponent>().addText(std::string{event.text});
+bool ChatLayer::onTextRecieved(TextStringNetworkEvent& event){
+    chatHistory->getComponent<MultilineTextComponent>().addText(event.text);
     return true;
 }
 
-bool ChatLayer::onKeyDown(KeyDownEvent& event){
-    auto& tf = chatTextField->getComponent<TextFieldComponent>();
-    if (tf.isFocused()) {
-        tf.keyInput(event.key);
-        return true;
-    }
-    return false;
-}
+
 
 bool ChatLayer::onMouseButtonPressed(MouseButtonPressedEvent& event){
     Entity* entity = getEntityAtPosition(event.x, event.y, groupButtons);
@@ -63,6 +53,10 @@ bool ChatLayer::onMouseButtonPressed(MouseButtonPressedEvent& event){
 }
 
 void ChatLayer::setReturn(){
-    sendChatMessageNetworkEvent(chatTextField->getComponent<TextFieldComponent>().getText());
-    chatTextField->getComponent<TextFieldComponent>().reset();
+    std::string text = chatTextField->getComponent<TextFieldComponent>().getText();
+    TextStringNetworkEvent event{text};
+    SDL_Event sdlevent = event.toSDLEvent();
+    SDL_PushEvent(&sdlevent);
+    // sendChatMessageNetworkEvent(chatTextField->getComponent<TextFieldComponent>().getText());
+    chatTextField->getComponent<TextFieldComponent>().clear();
 }

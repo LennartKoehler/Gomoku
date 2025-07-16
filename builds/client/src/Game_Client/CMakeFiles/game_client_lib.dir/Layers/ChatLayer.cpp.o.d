@@ -364,19 +364,24 @@ src/Game_Client/CMakeFiles/game_client_lib.dir/Layers/ChatLayer.cpp.o: \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/FunctionComponent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/TextComponent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/TextFieldComponent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/MultilineTextComponent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../VectorMatrix.hpp \
- /usr/include/c++/11/cassert /usr/include/assert.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/sstream \
- /usr/include/c++/11/bits/sstream.tcc \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../Events/MouseButtonPressedEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../Events/Event.hpp \
+ /usr/include/c++/11/bits/istream.tcc \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/EventUtils.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/MouseButtonPressedEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/Event.hpp \
+ /usr/include/c++/11/typeindex /usr/include/c++/11/cassert \
+ /usr/include/assert.h \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/GameStateEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/../VectorMatrix.hpp \
+ /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/NetworkConnectionEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/TextStringEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/KeyDownEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/TextCharEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/CodeEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/../Events/QuitEvent.hpp \
+ /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ECS/MultilineTextComponent.hpp \
  /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../Textures.hpp \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/bits/stl_multimap.h \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../Events/TextInputEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../Events/KeyDownEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../Events/TextEvent.hpp \
- /home/lennart/cpp_projects/game_engine/src/Game_Client/Layers/../ChatUtils.h
+ /usr/include/c++/11/bits/stl_multimap.h

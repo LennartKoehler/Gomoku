@@ -4,6 +4,7 @@ add_library(
 
     "Events/Event.hpp" 
     "Events/MouseButtonPressedEvent.hpp"
+    "Events/EventUtils.cpp"
 
     "TextureManager.hpp" 
     "Game.hpp" 

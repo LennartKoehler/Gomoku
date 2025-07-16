@@ -24,6 +24,10 @@ public:
         return isActive;
     }
 
+    void addLayer(std::shared_ptr<Layer> layer){
+        layerStack.addLayer(layer);
+    }
+
 protected:
     bool isActive = false;
     LayerStack layerStack;

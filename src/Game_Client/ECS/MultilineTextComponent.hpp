@@ -21,16 +21,18 @@ public:
     MultilineTextComponent(int fontsize) : fontsize(fontsize){}
 
     void addText(std::string text){
-        SDL_Rect rect;
+        if (text.length() != 0){
+            SDL_Rect rect;
 
-        SDL_Texture* textTexture = TextureManager::WriteTextWrapped(text, fontsize, wraplength);
+            SDL_Texture* textTexture = TextureManager::WriteTextWrapped(text, fontsize, wraplength);
 
-        SDL_QueryTexture(textTexture, NULL, NULL, &rect.w, &rect.h);
-        rect.x = 0;
-        rect.y = yOffset;
-        yOffset -= rect.h;
+            SDL_QueryTexture(textTexture, NULL, NULL, &rect.w, &rect.h);
+            rect.x = 0;
+            rect.y = yOffset;
+            yOffset -= rect.h;
 
-        texts.emplace_back(TextHelper(text, textTexture, rect));
+            texts.emplace_back(TextHelper(text, textTexture, rect));
+        }
     }
 
 

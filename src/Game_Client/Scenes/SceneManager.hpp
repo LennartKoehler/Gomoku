@@ -2,6 +2,7 @@
 
 #include "MainMenu.hpp"
 #include "GomokuScene.hpp"
+#include <memory>
 
 // manages interactions between scenes
 class SceneManager{
@@ -18,6 +19,9 @@ public:
         activeScene->update();
         activeScene->draw();
         }
+    void sendLayer(std::shared_ptr<Layer> layer, Scene* scene){
+        scene->addLayer(layer);
+    }
 
     GomokuScene* gomoku;
     MainMenu* mainMenu;
